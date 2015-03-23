@@ -1,0 +1,21 @@
+<ion-view view-title="Inspections">
+	<ion-nav-buttons side="left">
+		<a class="button button-clear" href="#/tab/InspectionDetails/">
+			<i class="icon ion-plus-round"></i>
+		</a>
+	</ion-nav-buttons>
+	<ion-content ng-class="!Inspections || !Inspections.length ? 'center':'' ">
+		<ion-list can-swipe="true">
+			<ion-item class="item-remove-animate item-icon-left item-icon-right" ng-repeat="inspection in Inspections" type="item-text-wrap" href="#/tab/InspectionDetails/{{inspection.id}}">
+				<i class="fa fa-home fa-3x"></i>
+				{{inspection.doc.address}}
+				{{inspection.doc.inspectionDate | date:'dd/MM/yyyy'}}
+				<i class="icon ion-chevron-right icon-accessory"></i>
+				<ion-option-button class="button button-clear" ng-click="delete(inspection)">
+					<i class="icon ion-trash-b"></i>
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+		<div ng-show="(!Inspections || !Inspections.length) && !isLoading" style="color:grey;text-align:center">No item to show. Please use plus icon to top left to add new inspection.</div>
+	</ion-content>
+</ion-view>

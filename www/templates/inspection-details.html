@@ -1,0 +1,50 @@
+<ion-view view-title="Details">
+	<ion-nav-buttons side="right">
+		<button class="button button-icon icon ion-ios7-arrow-forward" ng-click="gotoNext()"></button>
+	</ion-nav-buttons>
+	<ion-content>
+		<alert class="no-bottom-margin" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+		<form name="inspectionDetailsForm" novalidate form-locator>
+			<div class="list">
+				<label class="item item-input" style="overflow:visible;position:static">
+					<input name="address" type="text" ng-model="Inspection.address" placeholder="Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" ng-required="true">
+					<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+					<p ng-show="inspectionDetailsForm.address.$error.required" class="help-block" style="color:red"><i class="fa fa-exclamation-circle"></i></p>
+				</label>
+
+				<label class="item item-input item-select">
+					<div class="input-label">
+						Property type
+					</div>
+					<select name="propertyType" ng-model="Inspection.propertyType">
+						<option>Unit</option>
+						<option selected>House</option>
+						<option>Town house</option>
+						<option>Villa</option>
+					</select>
+				</label>
+
+				<label class="item item-input">
+					<div class="input-label">
+						Inspection Date
+					</div>
+					<input type="date" ng-model="Inspection.inspectionDate" style="text-align:right">
+				</label>
+
+				<ion-list>
+					<ion-item class="item-icon-right" ng-repeat=" category in mm.categories">
+						{{Inspection[category.propertyName] | zeroToNo}} {{category.name}}
+						<div>
+							<button class="button button-icon icon ion-plus-round" ng-click="category.increase()" style="color:green"></button>
+							<button class="button button-icon icon ion-minus-round" ng-click="category.decrease()" style="right:50px !important;color:red"></button>
+						</div>
+
+						<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+						</ion-reorder-button>
+					</ion-item>
+				</ion-list>
+				<a class="button button-block icon-right ion-chevron-right button-energized" ng-click="gotoNext()">Save and Rate</a>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>
