@@ -18,7 +18,7 @@ module.exports = function(config) {
 		'../www/lib/angular/angular.js',
 		'../www/lib/jquery/dist/jquery.js',
 		'../www/lib/angular-bootstrap/ui-bootstrap.js',
-		'../www/lib/angular/angular.js',
+		'../www/lib/ionic/js/ionic.bundle.js',
 		'../www/js/*.js',
 		'../bower_components/angular-mocks/angular-mocks.js',
 		'*.test.js'
@@ -52,7 +52,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
 
 
     // enable / disable watching file and executing tests whenever any file changes
