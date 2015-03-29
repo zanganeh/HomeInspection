@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "HomeInspection", "HomeInspection.jsproj", "{8AA291F9-E62C-42DF-A046-CD1F02B9A834}"
 EndProject
-Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "HomeInspection.Test", "HomeInspection.Test\HomeInspection.Test.jsproj", "{82898DBB-6645-485F-9400-ED0C5CCA1843}"
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "HomeInspection.Test", "test\test.jsproj", "{82898DBB-6645-485F-9400-ED0C5CCA1843}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
