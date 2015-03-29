@@ -1,7 +1,7 @@
 {
   "name": "homeinspection",
   "version": "1.0.0",
-  "description": "HomeInspection: An Ionic project",
+  "description": "Home Inspection: Application help people do inspection easier and faster",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",
