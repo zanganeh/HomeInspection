@@ -5,22 +5,23 @@
 	var $controller;
 	var $q;
 	var $rootScope;
+	var $scope;
 
 	beforeEach(inject(function (_$controller_, _$q_, _$rootScope_)
 	{
 		$controller = _$controller_;
 		$q = _$q_;
 		$rootScope = _$rootScope_;
+		$scope = $rootScope.$new();
 	}));
 
 	describe('InspectionsCtrl', function ()
 	{
-		var $scope, ionicLoadingMock, $state, InspectionRepository;
+		var ionicLoadingMock, $state, InspectionRepository;
 
 		beforeEach(function ()
 		{
 			ionicLoading = jasmine.createSpyObj('ionicLoading', ['show']);
-			$scope = jasmine.createSpyObj('ionicLoading', ['$on']);
 			$state = {};
 			InspectionRepository = {};
 			var controller = $controller('InspectionsCtrl', { $scope: $scope, $ionicLoading: ionicLoading, $state: $state, InspectionRepository: InspectionRepository });
@@ -35,7 +36,6 @@
 		{
 			expect(ionicLoading.show).toHaveBeenCalledWith({ template: 'Loading...', delay: 500 });
 		});
-
 
 		describe('delete', function ()
 		{
@@ -96,6 +96,49 @@
 						});
 					});
 				});
+			});
+		});
+
+		describe('$ionicView.enter', function ()
+		{
+			var allDeferred;
+			beforeEach(function ()
+			{
+				allDeferred = $q.defer();
+				InspectionRepository.all = jasmine.createSpy('all').and.returnValue(allDeferred.promise);
+				$scope.$broadcast('$ionicView.enter');
+			});
+
+			it('should fetch all inspections', function ()
+			{
+				expect(InspectionRepository.all).toHaveBeenCalledWith();
+			});
+
+			describe('when all inspection has been fetched correctly', function ()
+			{
+				var rows;
+
+				beforeEach(function ()
+				{
+					spyOn($scope, '$apply');
+					$scope.$$phase = false;
+					rows = [1, 2, 3];
+					allDeferred.resolve({ rows: rows });
+					$rootScope.$apply();
+				});
+
+				it('Inspections value should  be fetched', function ()
+				{
+					expect($scope.Inspections).toBe(rows);
+				});
+
+				describe('with set $scope.$$phase', function()
+				{
+					it('should call $scope.$apply', function ()
+					{
+						expect($scope.$apply).toHaveBeenCalledWith();
+					});
+				})
 			});
 		});
 	});
