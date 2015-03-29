@@ -92,7 +92,7 @@
 						{
 							removeDeferred.resolve();
 							$rootScope.$apply();
-							expect($state.go).toHaveBeenCalled();
+							expect($state.go).toHaveBeenCalled('asd');
 						});
 					});
 				});
