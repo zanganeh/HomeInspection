@@ -1,6 +1,6 @@
 <ion-view view-title="Details">
 	<ion-nav-buttons side="right">
-		<button class="button button-icon icon ion-ios7-arrow-forward" ng-click="gotoNext()"></button>
+		<button class="button button-icon fa fa-pencil-square-o" ng-click="gotoNext()"></button>
 	</ion-nav-buttons>
 	<ion-content>
 		<alert class="no-bottom-margin" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>

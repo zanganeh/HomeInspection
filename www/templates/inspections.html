@@ -6,7 +6,7 @@
 	</ion-nav-buttons>
 	<ion-content ng-class="!Inspections || !Inspections.length ? 'center':'' ">
 		<ion-list can-swipe="true">
-			<ion-item class="item-remove-animate item-icon-left item-icon-right" ng-repeat="inspection in Inspections" type="item-text-wrap" href="#/tab/InspectionDetails/{{inspection.id}}">
+			<ion-item class="item-remove-animate item-icon-left item-icon-right item-text-wrap" ng-repeat="inspection in Inspections" type="item-text-wrap" href="#/tab/InspectionDetails/{{inspection.id}}">
 				<i class="fa fa-home fa-3x"></i>
 				{{inspection.doc.address}}
 				{{inspection.doc.inspectionDate | date:'dd/MM/yyyy'}}

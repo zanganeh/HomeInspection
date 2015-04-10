@@ -378,13 +378,11 @@
     <Content Include="www\lib\jquery\src\var\toString.js" />
     <Content Include="www\lib\jquery\src\wrap.js" />
     <Content Include="www\lib\pouchdb-3.3.1.js" />
-    <Content Include="www\templates\hi-rating.html" />
     <Content Include="www\templates\inspection-details-rating.html" />
     <Content Include="www\templates\inspection-details.html" />
     <Content Include="www\templates\inspections.html" />
     <Content Include="www\templates\tab-account.html" />
     <Content Include="www\templates\tabs.html" />
-    <Content Include="www\_HomeInspection.sln" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="www\lib\ionic\js\angular-ui\" />

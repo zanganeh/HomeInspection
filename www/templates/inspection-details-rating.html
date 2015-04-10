@@ -1,22 +1,22 @@
 ﻿<ion-view view-title="{{Inspection.address}}">
 	<ion-content>
-
 		<div class="list">
-			<div class="item item-divider" ng-repeat="category in categoriesHasValue">
+			<div class="item item-divider" ng-repeat-start="category in categoriesHasValue">
 				{{category.name}}(s)
-				<div class="item rate" ng-repeat="subcategory in category.subCategories">
-					{{subcategory}} :
-					<a href ng-click="saveRate(subcategory,'1')">
-						<i class="fa fa-smile-o fa-2x"></i>
-					</a>
-					<a href ng-click="Inspection[subcategory] = '2'">
-						<i class="fa fa-meh-o fa-2x"></i>
-					</a>
-					<a href ng-click="Inspection[subcategory] = '3'">
-						<i class="fa fa-frown-o fa-2x"></i>
-					</a>
-				</div>
 			</div>
+			<div class="item rate" ng-repeat="subcategory in category.subCategories">
+				{{subcategory}}
+				<a href ng-click="saveRate(subcategory,'1')" ng-style="{ color: Inspection[subcategory] == '1' ? '#55C768' : '#888' }">
+					<i class="fa fa-smile-o fa-2x"></i>
+				</a>
+				<a href ng-click="Inspection[subcategory] = '2'" ng-style="{ color: Inspection[subcategory] == '2' ? '#FBC000' : '#888' }">
+					<i class="fa fa-meh-o fa-2x"></i>
+				</a>
+				<a href ng-click="Inspection[subcategory] = '3'" ng-style="{ color: Inspection[subcategory] == '3' ? 'red' : '#888' }">
+					<i class="fa fa-frown-o fa-2x"></i>
+				</a>
+			</div>
+			<span ng-repeat-end></span>
 			<div class="item no-padding">
 				<textarea name="comment" ng-model="Inspection.comment" placeholder="Comment"></textarea>
 			</div>
