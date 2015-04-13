@@ -45,7 +45,7 @@ angular.module('starter.controllers', ['ui.bootstrap', 'starter.directives'])
 	});
 })
 
-.controller('InspectionDetailsCtrl', function ($q, $rootScope, $scope, $stateParams, $http, $location, $ionicPopup, $ionicLoading, Categories, Camera, InspectionRepository)
+.controller('InspectionDetailsCtrl', function ($q, $rootScope, $scope, $stateParams, $http, $location, $ionicPopup, $ionicLoading, Categories, InspectionRepository)
 {
 	$scope.alerts = [];
 	$ionicLoading.show({
@@ -147,17 +147,6 @@ angular.module('starter.controllers', ['ui.bootstrap', 'starter.directives'])
 		});
 	};
 
-	$scope.getPhoto = function ()
-	{
-		Camera.getPicture().then(function (imageURI)
-		{
-			console.log(imageURI);
-		}, function (err)
-		{
-			console.err(err);
-		})
-	};
-
 	$scope.$on('$stateChangeStart',
 		function (event, toState, toParams, fromState, fromParams)
 		{
@@ -199,7 +188,7 @@ angular.module('starter.controllers', ['ui.bootstrap', 'starter.directives'])
 		});
 	};
 })
-.controller('inspectionDetailsRatingCtrl', function ($scope, $stateParams, Categories, InspectionRepository)
+.controller('inspectionDetailsRatingCtrl', function ($scope, $stateParams, Categories, InspectionRepository, Camera)
 {
 	$scope.categoriesHasValue = [];
 	if ($stateParams.inspectionID)
@@ -226,20 +215,38 @@ angular.module('starter.controllers', ['ui.bootstrap', 'starter.directives'])
 					}
 				});
 			});
+
 		$scope.saveRate = function (subcategory, rate)
 		{
-			$scope.Inspection[subcategory] = rate;
-			InspectionRepository.save()
+			$scope.Inspection[subcategory] = $scope.Inspection[subcategory] || {};
+			$scope.Inspection[subcategory].rate = rate;
+			$scope.save();
+		};
+
+		$scope.save = function ()
+		{
+			InspectionRepository.save($scope.Inspection).then(function (inspect)
+			{
+				$scope.Inspection = inspect;
+			});
+		};
+
+		$scope.getPhoto = function (subcategory)
+		{
+			Camera.getPicture().then(function (image)
+			{
+				$scope.Inspection[subcategory] = $scope.Inspection[subcategory] || {};
+				$scope.Inspection[subcategory].images = $scope.Inspection[subcategory].images || [];
+				$scope.Inspection[subcategory].images.push(image);
+				$scope.save();
+			}, function (err)
+			{
+				console.err(err);
+			})
 		};
 	}
 	else
 	{
 		throw "No inspectionID has been provided";
 	}
-})
-.controller('AccountCtrl', function ($scope)
-{
-	$scope.settings = {
-		enableFriends: true
-	};
 });

@@ -65,3 +65,15 @@
 .tab-nav a:hover{
     text-decoration:none;
 }
+
+.photo-badge{
+    position: absolute;
+    background: #EF4E3A;
+    height:1.0rem;
+    width:1.0rem;
+    text-align: center;
+    line-height: 1rem;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    color:white;
+}

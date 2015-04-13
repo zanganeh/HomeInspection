@@ -18,11 +18,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 .config(function ($stateProvider, $urlRouterProvider)
 {
 	$stateProvider
-		.state('tab', {
-			url: "/tab",
-			abstract: true,
-			templateUrl: "templates/tabs.html"
-		})
+
+	.state('tab', {
+		url: "/tab",
+		abstract: true,
+		templateUrl: "templates/tabs.html"
+	})
 
 	.state('tab.Inspections', {
 		cache: false,
@@ -53,16 +54,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 			'tab-Inspections': {
 				templateUrl: 'templates/inspection-details-rating.html',
 				controller: 'inspectionDetailsRatingCtrl'
-			}
-		}
-	})
-
-	.state('tab.account', {
-		url: '/account',
-		views: {
-			'tab-account': {
-				templateUrl: 'templates/tab-account.html',
-				controller: 'AccountCtrl'
 			}
 		}
 	});
